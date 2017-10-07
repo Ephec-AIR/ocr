@@ -1,16 +1,15 @@
 Reads the video stream, process it and upload the value to our centralized server where it is saved.
 
-# Installation
+# Install
 
-## 1. Using Docker
+## Docker
 
 *Not yet available*
 
-    docker run -e "SERIAL=<the_orc_serial>" -e "TOKEN=<the_ocr_token>" Ephec-AIR/orc:latest
+    docker pull Ephec-AIR/ocr:latest
 
-## 2. From source
 
-### 1. Download the app and install its dependancies
+## Standalone
 
 You must have python version >= 3.5, pip and virtualenv installed. (dabian packages: `python3`, `python3-pip`, `python3-virtualenv`)
 
@@ -21,25 +20,17 @@ You must have python version >= 3.5, pip and virtualenv installed. (dabian packa
     echo Installation complete ! || \
     echo Installation failed !
 
-### 2. Configure the app
+# Run
 
-By setting values along the CLI (see `./start.py --help` for all available settings)
+Feeds stdout:
 
-    ./start.py serial=<the_ocr_serial> token=<the_ocr_token>
+    ./capture.py  # standalone
+    docker run Ephec-AIR/ocr:latest  # docker
 
-By exporting values in the environment variables (the variable is the same as in the config file)
+Feeds the Web API:
 
-    export SERIAL=<the_ocr_serial>
-    export TOKEN=<the_ocr_token>
+    ./capture.py --serial=<ocr_serial> --token=<ocr_token>  # standalone
+    docker run Ephec-AIR/ocr:latest --serial=<ocr_serial> --token=<ocr_token>  # docker
 
-By editing the config file
-
-    nano config.yml
-
-If the same variable is set at differents place, the CLI is used first then the environ then the config file: `CLI > environ > config file`
-
-
-### 3. Start the app
-
-    cd ocr && ./start.py
+*See `--help` for all available options.*
 
