@@ -2,8 +2,8 @@
 
 from argparse import ArgumentParser
 from json import dumps as json_dumps
-from requests import post as httppost
 from sys import argv
+from requests import post as httppost
 
 
 def get_consumption():
