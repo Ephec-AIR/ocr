@@ -1,5 +1,10 @@
 #!./venv/bin/python
 
+from argparse import ArgumentParser
+from json import dumps as json_dumps
+from requests import post as httppost
+from sys import argv
+
 
 def get_consumption():
     """Read the video stream and process it to return the consumption."""
@@ -27,11 +32,6 @@ def send_consumption(serial, token, consumption):
 
 
 if __name__ == "__main__":
-    from argparse import ArgumentParser
-    from json import dumps as json_dumps
-    from requests import post as httppost
-    from sys import argv
-
     # Define CLI options
     parser = ArgumentParser(description="Reads the video stream, process it and upload the value to our centralized server where it is saved.")
     parser.add_argument("-s", "--serial", action="store", help="OCR serial code. Needed to feed the web api")
