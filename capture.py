@@ -1,19 +1,36 @@
 #!./venv/bin/python
 
+
 def get_consumption():
-    """Read the video stream and process it to return the consumption"""
+    """Read the video stream and process it to return the consumption."""
     raise NotImplementedError()
+
+
+def send_consumption(serial, token, consumption):
+    """
+    Feed the web api.
+    
+    Args:
+        serial: OCR public serial
+        token: OCR private token
+        consumption: Measured consumption
+    """
+    httppost("https://air.ephec-ti.org/api/v1/",
+             headers={
+                 "content-type": "application/json"
+             },
+             data=json_dumps({
+                 "serial": serial,
+                 "token": token,
+                 "consumption": consumption
+             }))
+
 
 if __name__ == "__main__":
     from argparse import ArgumentParser
-    from collections import namedtuple
-    from functools import partial
     from json import dumps as json_dumps
-    from sys import argv, stdout, version_info
     from requests import post as httppost
-
-    # Patch print function to output to stdout (default is stderr)
-    print = partial(print, file=stdout)
+    from sys import argv
 
     # Define CLI options
     parser = ArgumentParser(description="Reads the video stream, process it and upload the value to our centralized server where it is saved.")
@@ -26,16 +43,8 @@ if __name__ == "__main__":
 
     if cli.serial and cli.token:
         # Feeds web api
-        httppost("https://air.ephec-ti.org/api/v1/",
-            headers={
-                "content-type": "application/json"
-            },
-            data=json_dumps({
-            "serial": cli.serial,
-            "token": cli.token,
-            "consumption": cli.consumption if cli.consumption else get_consumption()
-        }))
+        send_consumption(cli.serial, cli.token, cli.consumption or get_consumption())
 
     else:
         # Feeds stdout
-        print(get_consumption())
+        print(cli.consumption or get_consumption())
