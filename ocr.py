@@ -5,6 +5,9 @@ import numpy as np
 import pytesseract
 import time
 
+def get_consumption(filepath):
+    """Retrieve a consumption from the image at filepath"""
+    raise NotImplementedError()
 
 imgB=cv2.imread('C:/Users/Kevin/Desktop/img05.png')
 grayscaled = cv2.cvtColor(imgB,cv2.COLOR_BGR2GRAY)
@@ -44,6 +47,3 @@ for imgpath in ["th.jpg", "th2.jpg", "th3.jpg"]:
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
-
->>>>>>> af26ea89611496438b4f016481e1b8425f665402
