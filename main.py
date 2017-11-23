@@ -3,7 +3,7 @@
 from argparse import ArgumentParser
 from sys import argv
 from capture import temp_capture
-from ocr import ocr
+from ocr import get_consumption
 from webapi import WebAPI
 
 def main():
