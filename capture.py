@@ -15,7 +15,7 @@ def capture(filepath):
 def temp_capture():
     """Capture a temporary image, yield the path of the generated file"""
     filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S.jpg")
-    filepath = Path(Path.home(), "Pictures", filename)
+    filepath = Path.home() / "Pictures" / filename
     capture(filepath)
     yield filepath
     remove(filepath)
