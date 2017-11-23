@@ -4,7 +4,7 @@ from subprocess import run as subproc_run
 from datetime import datetime
 from pathlib import Path
 from contextlib import contextmanager
-from os import remove
+from os import remove, environ
 from functools import partial
 
 def capture(filepath):
@@ -15,7 +15,8 @@ def capture(filepath):
 def temp_capture():
     """Capture a temporary image, yield the path of the generated file"""
     filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S.jpg")
-    filepath = Path.home() / "Pictures" / filename
+    temppath = Path(environ.get("temp", "/tmp"))
+    filepath = temppath / filename
     capture(filepath)
     yield filepath
     remove(filepath)
