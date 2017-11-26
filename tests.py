@@ -11,7 +11,7 @@ class Test(unittest.TestCase):
         self.assertEqual(get_consumption(imgpath), 23355)
 
     def test_meter_02(self):
-        img01 = str(Path("compteurs") / "02.jpg")
+        imgpath = str(Path("compteurs") / "02.jpg")
         self.assertEqual(get_consumption(imgpath), 4998)
 
     def test_meter_03(self):
