@@ -21,10 +21,10 @@ def main():
     if cli.consumption is not None:
         consumption = cli.consumption
     elif cli.file is not None:
-        consumption = ocr(cli.file)
+        consumption = get_consumption(cli.file)
     else:
         with temp_capture() as filepath:
-            consumption = ocr(filepath)
+            consumption = get_consumption(filepath)
 
     # Output consumtion to stdout or to WebAPI
     if cli.serial is None or cli.token is None:
