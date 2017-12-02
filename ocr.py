@@ -2,6 +2,7 @@ from os import remove
 from PIL import Image
 import cv2
 import pytesseract
+import re
 
 def get_consumption(original_image_path):
 
@@ -27,4 +28,4 @@ def get_consumption(original_image_path):
     imgfile = Image.open(filtered_image_path)
     imgtext = pytesseract.image_to_string(imgfile, config='-psm 6 digits')    
 
-    return int(imgtext.replace(" ", ""))
+    return int(re.sub("\D","",imgtext))
