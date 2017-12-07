@@ -6,3 +6,7 @@ import re
 
 def get_consumption(image_path):
     raise NotImplementedError()
+
+
+if __name__ == "__main__":
+    get_consumption()

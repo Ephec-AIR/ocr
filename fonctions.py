@@ -2,7 +2,7 @@ import PIL
 import pygame
 import cv2
 import numpy as np
-np.seterr(divide='ignore', invalid='ignore')
+#np.seterr(divide='ignore', invalid='ignore')
 import matplotlib.pyplot as plt
 import scipy.misc
 
@@ -13,15 +13,20 @@ from scipy import ndimage as ndi
 from skimage import feature
 
 def clean_image(image):
-    #seuil = 50
+    seuil = 70
 
     img = Image.open(image)
-    img_unsharp = img.filter(ImageFilter.UnsharpMask(3, 550, 9))
+    img_gray = img.convert('L')
 
-    img_unsharp = img_unsharp.convert('L')
-    data = np.array(img_unsharp)
+    data = np.array(img_gray)
+    data = binarize_array(data, seuil)
+
+    img2 = Image.fromarray(data)
     
-    #red, green, blue, alpha = data.T
+    img_unsharp = img2.filter(ImageFilter.UnsharpMask(3, 550, 50))
+    img_unsharp = img_unsharp.convert('L')
+    
+    #red, green, blue = data.T
     #white_areas = (red>seuil) & (blue>seuil) & (green>seuil)
     #rest_areas = (red<=seuil) & (blue<=seuil) & (green<=seuil)
 
@@ -35,21 +40,19 @@ def clean_image(image):
     #for i in range(lig-1):
      #   for j in range(col-1):
       #      img_gray[i-1, j-1] = average(data[i-1, j-1])
-
-    data = binarize_array(data, 230)
     
-    return data
+    return img_unsharp
 
-def binarize_array(numpy_array, threshold=200):
+def binarize_array(numpy_array, threshold):
     """Binarize a numpy array."""
     for i in range(len(numpy_array)):
         for j in range(len(numpy_array[0])):
-            numpy_array[i][j] = 0 if numpy_array[i][j] > threshold else 255
+            numpy_array[i][j] = 255 if numpy_array[i][j] > threshold else 0
     return numpy_array
 
 def match_template(img, template):
 
-    w, h, l = template.shape[::-1]
+    w, h = template.shape[::-1]
     
     # Apply template Matching
     res = cv2.matchTemplate(img, template, 4)
@@ -68,7 +71,7 @@ def match_template(img, template):
     
     plt.show()
 
-    return res, min_loc
+    return res
 
 def correl(matrix, treshold):
 
@@ -78,23 +81,7 @@ def correl(matrix, treshold):
     return matrix
 
 
-def edge_operator(img, sigma):
-    edge = feature.canny(img, sigma)
-    scipy.misc.imsave('edge.jpg', edge)
 
-    template = np.ones((60, 270))
-    template.fill(0)
-    for i in range(len(template)):
-        template[i][0] = 255
-        template[i][269] = 255
-    for j in range(len(template[0])):
-        template[0][j] = 255
-        template[59][j] = 255
-    scipy.misc.imsave('template.jpg', template)
-
-    result = match_template(cv2.imread('edge.jpg',1), cv2.imread('template.png',1))
-
-    return result
 
 
 
