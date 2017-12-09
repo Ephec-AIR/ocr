@@ -13,19 +13,18 @@ from scipy import ndimage as ndi
 from skimage import feature
 
 def clean_image(image):
-    seuil = 70
+    seuil = 150
 
     img = Image.open(image)
     img_gray = img.convert('L')
 
-    data = np.array(img_gray)
+    img_unsharp = img_gray.filter(ImageFilter.UnsharpMask(3, 550, 50))
+    img_unsharp = img_unsharp.convert('L')
+
+    data = np.array(img_unsharp)
     data = binarize_array(data, seuil)
 
-    img2 = Image.fromarray(data)
-    
-    img_unsharp = img2.filter(ImageFilter.UnsharpMask(3, 550, 50))
-    img_unsharp = img_unsharp.convert('L')
-    
+    img_final = Image.fromarray(data)    
     #red, green, blue = data.T
     #white_areas = (red>seuil) & (blue>seuil) & (green>seuil)
     #rest_areas = (red<=seuil) & (blue<=seuil) & (green<=seuil)
@@ -41,13 +40,13 @@ def clean_image(image):
      #   for j in range(col-1):
       #      img_gray[i-1, j-1] = average(data[i-1, j-1])
     
-    return img_unsharp
+    return img_final
 
 def binarize_array(numpy_array, threshold):
     """Binarize a numpy array."""
     for i in range(len(numpy_array)):
         for j in range(len(numpy_array[0])):
-            numpy_array[i][j] = 255 if numpy_array[i][j] > threshold else 0
+            numpy_array[i][j] = 0 if numpy_array[i][j] > threshold else 255
     return numpy_array
 
 def match_template(img, template):
@@ -80,6 +79,30 @@ def correl(matrix, treshold):
             matrix[i][j] = 0 if matrix[i][j] > treshold else 255
     return matrix
 
+def edge_operator(img, sigma):
+    edge = feature.canny(img, sigma)
+    #scipy.misc.imsave('edge.jpg', edge)
+
+    template = np.ones((60, 270))
+    template.fill(0)
+    for i in range(len(template)):
+        template[i][0] = 255
+        template[i][269] = 255
+    for j in range(len(template[0])):
+        template[0][j] = 255
+        template[59][j] = 255
+    #scipy.misc.imsave('template.jpg', template)
+
+    #result = match_template(cv2.imread('edge.jpg',1), cv2.imread('template.png',1))
+
+    return edge
+
+
+
+
+
+
+
 
 
 
@@ -95,5 +118,3 @@ def correl(matrix, treshold):
 
 
     
-
-
