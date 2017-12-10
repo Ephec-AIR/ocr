@@ -1,19 +1,55 @@
 import PIL
-import pygame
 import cv2
 import numpy as np
-#np.seterr(divide='ignore', invalid='ignore')
-import matplotlib.pyplot as plt
-import scipy.misc
+import pytesseract
+import imutils
 
 from PIL import Image
 from PIL import ImageFilter
 from PIL import ImageColor
-from scipy import ndimage as ndi
-from skimage import feature
+from imutils.perspective import four_point_transform
+from imutils import contours
 
-def clean_image(image):
-    seuil = 150
+pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe"
+tessdata_dir_config = '--tessdata-dir "C:\\Program Files (x86)\\Tesseract-OCR\\tessdata"'
+
+def get_meter(image, threshold):
+
+    # image cleanup
+    meter_clean_matrice = clean_image(image, threshold)
+    meter_clean_img = Image.fromarray(meter_clean_matrice)
+
+    # edge detection
+    edge = cv2.Canny(meter_clean_matrice, 100, 200)
+    invert_edge = invert_array(np.array(edge))
+    
+    # find contours in the edge map, then sort them by their
+    # size in descending order
+    cnts = cv2.findContours(edge.copy(), cv2.RETR_EXTERNAL,
+    	cv2.CHAIN_APPROX_SIMPLE)
+    cnts = cnts[0] if imutils.is_cv2() else cnts[1]
+    cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
+    displayCnt = None
+ 
+    # loop over the contours
+    for c in cnts:
+	# approximate the contour
+        peri = cv2.arcLength(c, True)
+        approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+ 
+	# if the contour has four vertices, then we have found
+	# the meter display
+        if len(approx) == 4:
+            displayCnt = approx
+            break
+    # extract the thermostat display, apply a perspective transform
+    # to it
+    output = four_point_transform(meter_clean_matrice, displayCnt.reshape(4, 2))
+    
+    #print(pytesseract.image_to_string(output, config=tessdata_dir_config))
+    return output, invert_edge
+
+def clean_image(image, threshold):
 
     img = Image.open(image)
     img_gray = img.convert('L')
@@ -22,81 +58,26 @@ def clean_image(image):
     img_unsharp = img_unsharp.convert('L')
 
     data = np.array(img_unsharp)
-    data = binarize_array(data, seuil)
-
-    img_final = Image.fromarray(data)    
-    #red, green, blue = data.T
-    #white_areas = (red>seuil) & (blue>seuil) & (green>seuil)
-    #rest_areas = (red<=seuil) & (blue<=seuil) & (green<=seuil)
-
-    #data[..., :-1][white_areas.T] = (0,0,0)
-    #data[..., :-1][rest_areas.T] = (255,255,255)
-
-    #lig, col, balek = data.shape
-
-    #img_gray = np.zeros((lig, col))
-
-    #for i in range(lig-1):
-     #   for j in range(col-1):
-      #      img_gray[i-1, j-1] = average(data[i-1, j-1])
+    data = binarize_array(data, threshold)
     
-    return img_final
+    return data
 
 def binarize_array(numpy_array, threshold):
+
     """Binarize a numpy array."""
     for i in range(len(numpy_array)):
         for j in range(len(numpy_array[0])):
             numpy_array[i][j] = 0 if numpy_array[i][j] > threshold else 255
     return numpy_array
 
-def match_template(img, template):
+def invert_array(numpy_array):
 
-    w, h = template.shape[::-1]
+    """Binarize a numpy array."""
+    for i in range(len(numpy_array)):
+        for j in range(len(numpy_array[0])):
+            numpy_array[i][j] = 255 if numpy_array[i][j] == 0 else 0
+    return numpy_array
     
-    # Apply template Matching
-    res = cv2.matchTemplate(img, template, 4)
-    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
-
-    top_left = min_loc
-    
-    bottom_right = (top_left[0] + w, top_left[1] + h)
-
-    cv2.rectangle(img,top_left, bottom_right, 255, 2)
-
-    plt.subplot(121),plt.imshow(res,cmap = 'gray')
-    plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
-    plt.subplot(122),plt.imshow(img,cmap = 'gray')
-    plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
-    
-    plt.show()
-
-    return res
-
-def correl(matrix, treshold):
-
-    for i in range(len(matrix)):
-        for j in range(len(matrix[0])):
-            matrix[i][j] = 0 if matrix[i][j] > treshold else 255
-    return matrix
-
-def edge_operator(img, sigma):
-    edge = feature.canny(img, sigma)
-    #scipy.misc.imsave('edge.jpg', edge)
-
-    template = np.ones((60, 270))
-    template.fill(0)
-    for i in range(len(template)):
-        template[i][0] = 255
-        template[i][269] = 255
-    for j in range(len(template[0])):
-        template[0][j] = 255
-        template[59][j] = 255
-    #scipy.misc.imsave('template.jpg', template)
-
-    #result = match_template(cv2.imread('edge.jpg',1), cv2.imread('template.png',1))
-
-    return edge
-
 
 
 
