@@ -59,10 +59,11 @@ Malheureusement nous avons rapidement rencontrés à la fois des bugs internes �
 ceux-ci devenaient plus complexes.        
 La solution fut donc d'utiliser Pytesseract, une librairie de détection et de lecture automatique de caractère dans une image.      
                                           
-Bien que très puissante, la librairie Pytesseract rencontre énormément de difficulté pour lire les compteurs électrique car ceux ci contiennent trop d'information inutile. IL a donc
-fallut traiter l'image pour éliminer un maximum d'information inutile. Le premier traitement consistant à augmenter la netteté de l'image et à la binariser. Il a ensuite fallut trouver
-un moyen de sélectionner la zone d'affichage du compteur. Pour ce faire nous avons utiliser une méthode de détection de bord pour rechercher la zone rectangulaire de l'image contenant
-l'affichage du compteur.
+Bien que très puissante, la librairie Pytesseract rencontre énormément de difficulté pour lire les compteurs électrique car ceux ci contiennent trop d'information inutile.             
+IL a donc fallut traiter l'image pour éliminer un maximum d'information inutile. Le premier traitement consistant à augmenter la netteté de l'image et à la binariser.
+                       
+Il a ensuite fallut trouver un moyen de sélectionner la zone d'affichage du compteur. Pour ce faire nous avons utiliser une méthode de détection de bord pour rechercher 
+la zone rectangulaire de l'image contenant l'affichage du compteur.
 
 
 Limitation et améliorations possibles 
@@ -70,7 +71,9 @@ Limitation et améliorations possibles
 
 Actuellement, l'OCR ne fonctionne correctement qu'avec des images de bonne qualité et certains types de compteurs.    
 Une amélioration possible serait donc d'améliorer le traitement de l'image en implémentant des techniques de suppression/atténuation des reflets/parasites sur l'image.
-Il serait également bien d'améliorer l'algorithme d'isolation de la zone d'affichage du compteur. En effet, se baser sur un "objet" de l'image qui a 4 sommets fonctionne qu'avec des images bien calibrées et ne contenant pas d'autres éléments pouvant être confondu avec cette zone d'affichage.
+                
+Il serait également bien d'améliorer l'algorithme d'isolation de la zone d'affichage du compteur. En effet, se baser sur un "objet" de l'image qui a 4 sommets fonctionne
+qu'avec des images bien calibrées et ne contenant pas d'autres éléments pouvant être confondu avec cette zone d'affichage.
 
 Conclusions personnelles
 ------------------------
@@ -83,8 +86,9 @@ Il a été intéressant d'implémenter des fonctions de traitement d'image et d'
 
 ### Noé Lambin
 
-Ce projet a été pour moi l'occasion de découvrir et d'apprendre à maitriser Python.    
-Ce fut aussi l'occasion de tenter de mettre en pratique les techniques de produit de convolution et de corrélation vus lors du cours théorique. J'ai aussi pu découvrir la partie mathématique qui se cache derrière le traitement d'image.
+Ce projet a été pour moi l'occasion de découvrir et d'apprendre à maitriser Python.          
+Ce fut aussi l'occasion de tenter de mettre en pratique les techniques de produit de convolution et de corrélation vus lors du cours théorique.            
+J'ai aussi pu découvrir la partie mathématique qui se cache derrière le traitement d'image.          
 
 
 ### Mathieu Rousseau
