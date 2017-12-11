@@ -1,11 +1,10 @@
 from re import compile as re_compile
-
-from PIL import Image, ImageFilter, ImageColor
-from imutils import contours, is_cv2
-from imutils.perspective import four_point_transform
 import cv2
 import numpy as np
 import pytesseract
+from PIL import Image, ImageColor, ImageFilter
+from imutils import contours, is_cv2
+from imutils.perspective import four_point_transform
 
 pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe"
 tessdata_dir_config = 'digits --tessdata-dir "C:\\Program Files (x86)\\Tesseract-OCR\\tessdata"'
