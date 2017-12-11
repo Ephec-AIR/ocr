@@ -27,6 +27,7 @@ img = ~im2bw(img,tresh);
 [Lab nbConn] = bwlabel(~img);
 
 for i = 1:nbConn
+    
     [row col] = find(Lab == i);
     
     el = img(min(row):max(row),min(col):max(col));

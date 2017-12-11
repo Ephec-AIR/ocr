@@ -60,7 +60,7 @@ img2 = bwareaopen(img2,avg2);
 
 wImage = size(img2,1);
 
-img2 = img2(0 : wImage, avgCenterBot:avgCenterTop);
+img2 = img2(0 : wImage, avgCenterBot:avgCenterBot);
 
 se = strel('diamond',3);
 
