@@ -25,7 +25,7 @@ Conclusions personelles
 -----------------------
 Julien Castiaux :
 
-Noé Lambin :
+Noé Lambin :    
 Ce projet a été pour moi l'occasion de découvrir et d'apprendre à maitriser Python. Ce fut aussi l'occasion de tenter de mettre en pratique les techniques de produit de convolution et de corrélation uvs lors du cours théorique.
 
 
