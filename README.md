@@ -14,7 +14,7 @@ Mise en application
 1. Récupération de l'image 
 2. Nettoyage de l'image : 
 
-    - Application d'un filtre de floutage dessus afin d'atténuer les détails inutiles qui pourraient perturber la lecture
+    - Application d'un filtre de floutage afin d'atténuer les détails inutiles qui pourraient perturber la lecture
     - Conversion en niveau de gris
     - Binarisation de l'image selon un seuil paramétrable
 
