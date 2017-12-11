@@ -25,7 +25,11 @@ Mise en application
 
 Exemple
 -------
-
+![Etape 1](https://i.imgur.com/ZWVT4Pe.png)
+![Etape 2](https://i.imgur.com/aAZEEiY.png)
+![Etape 3](https://i.imgur.com/yCgyGlp.png)
+![Etape 4](https://i.imgur.com/ijbDXjF.png)
+![Etape 5](https://i.imgur.com/IxIJ8lz.png)
 
 Problèmes rencontrés et leurs solutions
 ---------------------------------------
