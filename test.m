@@ -1,5 +1,5 @@
-function [ result ] = ocrReader2( img )
-    
+  img = imread('Images\compteur4.jpg');
+  
    figure;imshow(img);
    title("Image original");
 %     
@@ -56,9 +56,9 @@ function [ result ] = ocrReader2( img )
 
     avgCenter = round(avgCenter/nbObj2);
 
-    avgCenterTop = avgCenter - avgSize/4;
+    avgCenterTop = avgCenter - avgSize/2;
     
-    avgCenterBot = avgCenter + avgSize/4;
+    avgCenterBot = avgCenter + avgSize/2;
 
     avg2 = round(avg2/2);
 
@@ -119,5 +119,3 @@ function [binaryImg] = binarizeImage(img,tresh)
     binaryImg = imbinarize(img, T);
     figure;imshow(binaryImg);
     title("Image binarisée");
-end
-

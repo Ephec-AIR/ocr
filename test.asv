@@ -1,6 +1,8 @@
-function [ result ] = ocrReader2( img )
-    
-   figure;imshow(img);
+  clear all;close all;clc;
+
+img = imread('Images\compteur5.jpg');
+   
+  figure;imshow(img);
    title("Image original");
 %     
 % %     img = imgaussfilt(img,1);
@@ -12,30 +14,31 @@ function [ result ] = ocrReader2( img )
 %     tresh = graythresh(img);
 %     img = im2bw(img);
 %     
-%     figure;imshow(img);
-%     title("Image binarisée");
+
 
     img = binarizeImage(img,0.5);
     
-    [labels, nbObj] = bwlabel(img);
-    props = regionprops(img,'basic');
-
-    avg = 0;
-    for o = 1 : nbObj
-       avg =  avg + props(o).Area;
-    end
-
-    avg = round(avg/nbObj);
-    avg = round(avg);
-
-    img = img - bwareaopen(img,avg);
-    
-    %figure;imshow(img);
-    %title("Premier nettoyage");
+%     [labels, nbObj] = bwlabel(img);
+%     props = regionprops(img,'basic');
+% 
+%     avg = 0;
+%     for o = 1 : nbObj
+%        avg =  avg + props(o).Area;
+%     end
+% 
+%     avg = round(avg/nbObj);
+%     avg = round(avg);
+% 
+%     img = img - bwareaopen(img,avg);
+%     
+%     figure;imshow(img);
+%     title("Premier nettoyage");
 
     %=============================================================================
-    img2 = im2bw(img);
-
+    %img2 = imbinarize(img);
+    img2 = i
+    figure;imshow(img);
+    title("Binarisation 2");
 
     [labels2,nbObj2] = bwlabel(img2);
 
@@ -43,7 +46,8 @@ function [ result ] = ocrReader2( img )
 
     avg2 = 0;
     avgCenter = 0;
-    avgSize = 0
+    avgSize = 0;
+
     for o = 1 : nbObj2
 
        avg2 =  avg2 + props2(o).Area;
@@ -55,12 +59,14 @@ function [ result ] = ocrReader2( img )
     avg2 = round(avg2/nbObj2);
 
     avgCenter = round(avgCenter/nbObj2);
-
-    avgCenterTop = avgCenter - avgSize/4;
     
-    avgCenterBot = avgCenter + avgSize/4;
+    avgSize = round(avgSize/nbObj2);
 
-    avg2 = round(avg2/2);
+    avgCenterTop = avgCenter - avgSize/2;
+    
+    avgCenterBot = avgCenter + avgSize/2;
+
+    avg2 = round(avg2);
 
     img2 = bwareaopen(img2,avg2);
     
@@ -69,7 +75,7 @@ function [ result ] = ocrReader2( img )
     
     wImage = size(img2,1);
 
-    img2 = img2(avgCenterTop : avgCenterBot, 1 : wImage);
+    img2 = img2(avgCenterTop : avgCenterBot, 1 : end);
     
     figure;imshow(img2);
     title("Recadrage");
@@ -103,10 +109,8 @@ function [ result ] = ocrReader2( img )
         end
 
     end
-end
 
 function [binaryImg] = binarizeImage(img,tresh)
-    img = imgaussfilt(img,2);
     img=rgb2gray(img);
     figure;imshow(img);
     title("Image gris");
@@ -120,4 +124,3 @@ function [binaryImg] = binarizeImage(img,tresh)
     figure;imshow(binaryImg);
     title("Image binarisée");
 end
-
