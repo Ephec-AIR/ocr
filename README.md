@@ -26,6 +26,7 @@ Conclusions personelles
 Julien Castiaux :
 
 Noé Lambin :
+Ce projet m'a permit de découvrir et d'apprendre à maitriser Python.
 
 Mathieu Rousseau :
 
