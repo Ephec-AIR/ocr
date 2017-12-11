@@ -65,7 +65,7 @@ Actuellement, l'OCR ne fonctionne correctement qu'avec des images de bonne quali
 Une amélioration possible serait donc d'améliorer le traitement de l'image en implémentant des techniques de suppression/atténuation des reflets/parasites sur l'image.
 Il serait également bien d'améliorer l'algorithme d'isolation de la zone d'affichage du compteur. En effet, se baser sur un "objet" de l'image qui a 4 sommets fonctionne qu'avec des images bien calibrées et ne contenant pas d'autres éléments pouvant être confondu avec cette zone d'affichage.
 
-Conclusions personelles
+Conclusions personnelles
 -----------------------
 Julien Castiaux :
 
