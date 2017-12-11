@@ -50,3 +50,5 @@ Bibliographie
 * Python Image Search. (2015). _Zero parameter automatic canny edge detection_. En ligne https://www.pyimagesearch.com/2015/04/06/zero-parameter-automatic-canny-edge-detection-with-python-and-opencv/
 * Python Image Search. (2017). _Recognizing digits with opencv dans python_. En ligne https://www.pyimagesearch.com/2017/02/13/recognizing-digits-with-opencv-and-python/
 * Python Image Search. (2017). _Bank check ocr with opencv and python part I_. En ligne https://www.pyimagesearch.com/2017/07/24/bank-check-ocr-with-opencv-and-python-part-i/
+* OpenCV documentation. (2017). _Image Thresholding_. En ligne
+https://docs.opencv.org/3.3.1/d7/d4d/tutorial_py_thresholding.html
