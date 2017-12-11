@@ -74,7 +74,7 @@ Une amélioration possible serait donc d'améliorer le traitement de l'image en 
 Il serait également bien d'améliorer l'algorithme d'isolation de la zone d'affichage du compteur. En effet, se baser sur un "objet" de l'image qui a 4 sommets fonctionne
 qu'avec des images bien calibrées et ne contenant pas d'autres éléments pouvant être confondu avec cette zone d'affichage.
                 
-Présentement le seuil de binarisation est fixe pour toute l'image, une amélioration possible serait d'avoir un seuil adaptatif pour s'adapter au changement de lumière sur l'image.
+Pour le moment le seuil de binarisation est fixe pour toute l'image, une amélioration possible serait d'avoir un seuil adaptatif pour s'adapter au changement de lumière sur l'image.
                
 Conclusions personnelles
 ------------------------
