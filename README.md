@@ -14,6 +14,12 @@ Mise en application
 Exemple
 -------
 
+Problèmes rencontrés et leurs solutions
+---------------------------------------
+
+Limitation et améliorations possibles 
+-------------------------------------
+
 Conclusions personelles
 -----------------------
 Julien Castiaux :
