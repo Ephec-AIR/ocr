@@ -3,28 +3,24 @@ clear all; clc;close all;
 img = imread('Images\compteur5.jpg');
 
 img = imgaussfilt(img,2);
-
 img=rgb2gray(img);
-
 tresh = graythresh(img);
-
 img = im2bw(img,tresh);
 
 [labels nbObj] = bwlabel(img);
-
 props = regionprops(img,'basic');
 
 avg = 0;
-
 for o = 1 : nbObj
    avg =  avg + props(o).Area;
 end
 
-avg = avg/nbObj;
-
+avg = round(avg/nbObj);
 avg = round(avg);
 
 img = img - bwareaopen(img,avg);
+img = imerode(img,se);
+
 %=============================================================================
 img2 = im2bw(img);
 
@@ -34,39 +30,39 @@ imshow(img2);figure;
 
 props2 = regionprops(img2,'basic');
 
-centers = regionprops(img2,'centroid');
-
 avg2 = 0;
 avgCenter = 0;
 
 for o = 1 : nbObj2
 
    avg2 =  avg2 + props2(o).Area;
-   avgCenter = avgCenter + props2(o).Centroid(1);
+   avgCenter = avgCenter + props2(o).Centroid(2);
 
 end
 
-avg2 = (avg2/nbObj2);
+avg2 = round(avg2/nbObj2);
 
 avgCenter = round(avgCenter/nbObj2);
 
-avgCenterTop = avgCenter + 100;
-avgCenterBot = avgCenter - 100;
+avgCenterTop = avgCenter + 200;
+avgCenterBot = avgCenter - 200;
 
 
 avg2 = round(avg2);
 
 img2 = bwareaopen(img2,avg2);
 
+
+
+figure;imshow(img2);
+
 wImage = size(img2,1);
 
-img2 = img2(0 : wImage, avgCenterBot:avgCenterTop);
+img2 = img2(avgCenterBot : avgCenterTop,1:end);
 
-se = strel('diamond',3);
 
-img2 = imerode(img2,se);
 
-imshow(img2);
+figure;imshow(img2);
 %============================================================================
 imgF = img2;
 
@@ -88,7 +84,7 @@ for i = 1:nbObjF
     
     [res acc] = readNumber(img_resize);
       
-    figure;imshow(img_resize);pause(0.5);
+    
     
     disp(res);
     disp(acc);
