@@ -1,3 +1,4 @@
+from platform import system
 from re import compile as re_compile
 import cv2
 import numpy as np
@@ -6,8 +7,13 @@ from PIL import Image, ImageColor, ImageFilter
 from imutils import contours, is_cv2
 from imutils.perspective import four_point_transform
 
-pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe"
-tessdata_dir_config = 'digits --tessdata-dir "C:\\Program Files (x86)\\Tesseract-OCR\\tessdata"'
+if system() == "Windows":
+    # Patch for windows as tesseract doesnt add itself to the path
+    from functools import partial
+    pytesseract.image_to_string = partial(pytesseract.image_to_string, 
+        config='digits --tessdata-dir "C:\\Program Files (x86)\\Tesseract-OCR\\tessdata"')
+    pytesseract.pytesseract.tesseract_cmd = \
+        "C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe"
 
 non_digit_re = re_compile("\D")
 
@@ -29,7 +35,7 @@ def get_consumption(image_path, threshold=150):
     except NoThermostaFoundError:
         raise NoThermostaFoundError("No thermosta found for image %s" % image_path)
     Image.fromarray(thermo).save("img.png")
-    thermo_value = pytesseract.image_to_string(Image.fromarray(thermo), config=tessdata_dir_config)
+    thermo_value = pytesseract.image_to_string(Image.fromarray(thermo))
     return thermo_value
 
 
