@@ -10,16 +10,31 @@ Récupérer de l'information utile depuis un domaine soumis au bruit est au coeu
 
 Mise en application
 -------------------
+1. Récupération de l'image 
+2. Nettoyage de l'image : 
+
+- Application d'un filtre de floutage dessus afin d'atténuer les détails inutiles qui pourrait perturber la lecture
+- Conversion en niveau de gris
+- Binarisation de l'image selon un seuil définis
+
+3. Isolation de la zone d'affichage du compteur
+
+- Pour cela, on fait une détection de contours et on cherche le plus grand objet qui a 4 sommets.
+
+4. Traitement de cette valeur via pytesseract
 
 Exemple
 -------
+
 
 Problèmes rencontrés et leurs solutions
 ---------------------------------------
 
 Limitation et améliorations possibles 
 -------------------------------------
-Actuellement, l'OCR ne fonctionne correctement qu'avec des images de bonne qualité et certains types de compteurs. Une amélioration possible serait donc d'améliorer le traitement de l'image en implémentant des techniques de suppression/atténuation des reflets sur l'image.
+Actuellement, l'OCR ne fonctionne correctement qu'avec des images de bonne qualité et certains types de compteurs. 
+Une amélioration possible serait donc d'améliorer le traitement de l'image en implémentant des techniques de suppression/atténuation des reflets/parasites sur l'image.
+Il serait également bien d'améliorer l'algorithme d'isolation de la zone d'affichage du compteur. En effet, se baser sur un "objet" de l'image qui a 4 sommets fonctionne qu'avec des images bien calibrées et ne contenant pas d'autres éléments pouvant être confondu avec cette zone d'affichage.
 
 Conclusions personelles
 -----------------------
