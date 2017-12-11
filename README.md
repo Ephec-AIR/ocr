@@ -21,18 +21,26 @@ Mise en application
 
 - Pour cela, on fait une détection de contours et on cherche le plus grand objet qui a 4 sommets.
 
-4. Traitement de cette valeur via pytesseract
+4. Traitement de cette valeur via Pytesseract
 
 Exemple
 -------
+1. Récupération de l'image en couleur (le haut est bleu).
 ![Etape 1](https://i.imgur.com/ZWVT4Pe.png)
+2. Premier traitement de l'image pour augmenter sa netteté.
 ![Etape 2](https://i.imgur.com/aAZEEiY.png)
+3. Conversion de l'image en RGB vers des niveaux de gris.
 ![Etape 3](https://i.imgur.com/yCgyGlp.png)
+4. Binarisation de l'image selon un seuil fixe pour toute l'image.
 ![Etape 4](https://i.imgur.com/ijbDXjF.png)
+5. Récupération de la zone d'affichage du compteur.
 ![Etape 5](https://i.imgur.com/IxIJ8lz.png)
+6. Traitement de cette zone d'affichage avec Pytesseract
 
 Problèmes rencontrés et leurs solutions
 ---------------------------------------
+
+
 
 Limitation et améliorations possibles 
 -------------------------------------
