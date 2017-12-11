@@ -1,7 +1,7 @@
 Extraction de la valeur affichée par un compteur électrique au moyen d'une technique de reconnaissance optique des caractères
 =====================================================================
 
-Un projet réalisé dans le cadre du cours de Traitement du Signal en 3e TI à l'EPHEC Louvain-la-Neuve par Castiaux Julien, Lambin Noé, Rousseau Mathieu et Vanwebsqkjjhdqs Christophe
+Un projet réalisé dans le cadre du cours de Traitement du Signal en 3e TI à l'EPHEC Louvain-la-Neuve par Castiaux Julien, Lambin Noé, Rousseau Mathieu et Van Waesberghe Christophe
 
 Introduction
 ------------
@@ -13,6 +13,24 @@ Mise en application
 
 Exemple
 -------
+
+Problèmes rencontrés et leurs solutions
+---------------------------------------
+
+Limitation et améliorations possibles 
+-------------------------------------
+Actuellement, l'OCR ne fonctionne correctement qu'avec des images de bonne qualité et certains types de compteurs. Une amélioration possible serait donc d'améliorer le traitement de l'image en implémentant des techniques de suppression/atténuation des reflets sur l'image.
+
+Conclusions personelles
+-----------------------
+Julien Castiaux :
+
+Noé Lambin :
+Ce projet m'a permit de découvrir et d'apprendre à maitriser Python.
+
+Mathieu Rousseau :
+
+Christophe Van Waesberghe :
 
 Conclusion
 ----------
@@ -34,3 +52,5 @@ Bibliographie
 * Python Image Search. (2015). _Zero parameter automatic canny edge detection_. En ligne https://www.pyimagesearch.com/2015/04/06/zero-parameter-automatic-canny-edge-detection-with-python-and-opencv/
 * Python Image Search. (2017). _Recognizing digits with opencv dans python_. En ligne https://www.pyimagesearch.com/2017/02/13/recognizing-digits-with-opencv-and-python/
 * Python Image Search. (2017). _Bank check ocr with opencv and python part I_. En ligne https://www.pyimagesearch.com/2017/07/24/bank-check-ocr-with-opencv-and-python-part-i/
+* OpenCV documentation. (2017). _Image Thresholding_. En ligne
+https://docs.opencv.org/3.3.1/d7/d4d/tutorial_py_thresholding.html
