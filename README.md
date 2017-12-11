@@ -1,7 +1,7 @@
 Extraction de la valeur affichée par un compteur électrique au moyen d'une technique de reconnaissance optique des caractères
 =====================================================================
 
-Un projet réalisé dans le cadre du cours de Traitement du Signal en 3e TI à l'EPHEC Louvain-la-Neuve par Lescaut Julien, Lambin Noé, Rousseau Mathieu et Vanwebsqkjjhdqs Christophe
+Un projet réalisé dans le cadre du cours de Traitement du Signal en 3e TI à l'EPHEC Louvain-la-Neuve par Castiaux Julien, Lambin Noé, Rousseau Mathieu et Van Waesberghe Christophe
 
 Introduction
 ------------
@@ -13,6 +13,16 @@ Mise en application
 
 Exemple
 -------
+
+Conclusions personelles
+-----------------------
+Julien Castiaux :
+
+Noé Lambin :
+
+Mathieu Rousseau :
+
+Christophe Van Waesberghe :
 
 Conclusion
 ----------
