@@ -1,10 +1,15 @@
 clear all; clc; close all;
-one=imread('Images\letters_numbers\1.bmp'); one2=imread('Images\letters_numbers\1_2.bmp');
+one=imread('Images\letters_numbers\1.bmp'); 
+one2=imread('Images\letters_numbers\1_2.bmp');
 two=imread('Images\letters_numbers\2.bmp');
-three=imread('Images\letters_numbers\3.bmp');four=imread('Images\letters_numbers\4.bmp');
-five=imread('Images\letters_numbers\5.bmp'); six=imread('Images\letters_numbers\6.bmp');
-seven=imread('Images\letters_numbers\7.bmp');eight=imread('Images\letters_numbers\8.bmp');
-nine=imread('Images\letters_numbers\9.bmp'); zero=imread('Images\letters_numbers\0.bmp');
+three=imread('Images\letters_numbers\3.bmp');
+four=imread('Images\letters_numbers\4.bmp');
+five=imread('Images\letters_numbers\5.bmp'); 
+six=imread('Images\letters_numbers\6.bmp');
+seven=imread('Images\letters_numbers\7.bmp');
+eight=imread('Images\letters_numbers\8.bmp');
+nine=imread('Images\letters_numbers\9.bmp'); 
+zero=imread('Images\letters_numbers\0.bmp');
 
 number=[one one2 two three four five...
     six seven eight nine zero];

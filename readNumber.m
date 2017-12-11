@@ -6,7 +6,7 @@ load templates;
 
 comp = [];
 
-for n=1:10
+for n=1:11
     
     sem=corr2(templates{1,n},img);
     
