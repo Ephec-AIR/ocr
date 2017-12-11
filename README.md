@@ -10,6 +10,7 @@ Récupérer de l'information utile depuis un domaine soumis au bruit est au coeu
 
 Mise en application
 -------------------
+
 1. Récupération de l'image 
 2. Nettoyage de l'image : 
 
@@ -25,6 +26,7 @@ Mise en application
 
 Exemple
 -------
+
 1. Récupération de l'image en couleur (le haut est bleu).    
     
 ![Etape 1](https://i.imgur.com/ZWVT4Pe.png)    
@@ -50,30 +52,41 @@ Exemple
 
 Problèmes rencontrés et leurs solutions
 ---------------------------------------
+
 Le premier objectif du projet était de pleinement utiliser les notions de produits de convolutions et de corrélations vus au cours. Pour ce faire nous avons exploré la librerie numpy
 qui 
 
 Limitation et améliorations possibles 
 -------------------------------------
+
 Actuellement, l'OCR ne fonctionne correctement qu'avec des images de bonne qualité et certains types de compteurs.    
 Une amélioration possible serait donc d'améliorer le traitement de l'image en implémentant des techniques de suppression/atténuation des reflets/parasites sur l'image.
 Il serait également bien d'améliorer l'algorithme d'isolation de la zone d'affichage du compteur. En effet, se baser sur un "objet" de l'image qui a 4 sommets fonctionne qu'avec des images bien calibrées et ne contenant pas d'autres éléments pouvant être confondu avec cette zone d'affichage.
 
 Conclusions personelles
 -----------------------
-Julien Castiaux :
 
-Noé Lambin :    
+### Julien Castiaux
+
+Bien que le traitement du signal n'est pas une vocation pour moi, il a été intéressant d'implémenter des fonctions de traitement d'image et d'avoir une réflection pour trouver une méthode efficace pour rendre un compteur lisible par tesseract.
+
+À coté de l'aspect technique, je suis content d'avoir pu partager ma passion pour le langage Python avec mon groupe et de les sentir entousiastes.
+
+### Noé Lambin
+
 Ce projet a été pour moi l'occasion de découvrir et d'apprendre à maitriser Python.    
 Ce fut aussi l'occasion de tenter de mettre en pratique les techniques de produit de convolution et de corrélation vus lors du cours théorique.
 
 
-Mathieu Rousseau :    
+### Mathieu Rousseau
+
 Au démarrage de ce projet, je ne connaissais pas du tout comment fonctionnait un OCR.     
 Ce projet m'a permit d'apprendre les différentes techniques de traitement d'image nécessaires à la bonne extraction des caractères de celle-ci (dans ce cas une valeur de consommation).    
 J'ai également réappris le language Python.    
 
-Christophe Van Waesberghe :
+### Christophe Van Waesberghe
+
+TODO
 
 Conclusion
 ----------
