@@ -11,8 +11,8 @@ Récupérer de l'information utile depuis un domaine soumis au bruit est au coeu
 Mise en application
 -------------------
 
-1. Récupération de l'image 
-2. Nettoyage de l'image : 
+1. Récupération de l'image
+2. Nettoyage de l'image :
 
     - Application d'un filtre de floutage afin d'atténuer les détails inutiles qui pourraient perturber la lecture
     - Conversion en niveau de gris
@@ -29,50 +29,48 @@ Exemple
 -------
 
 1. Récupération de l'image en couleur (le haut est bleu).    
-    
+
 ![Etape 1](https://i.imgur.com/ZWVT4Pe.png)
-    
+
 2. Premier traitement de l'image pour augmenter sa netteté.    
-    
+
 ![Etape 2](https://i.imgur.com/aAZEEiY.png)
-     
+
 3. Conversion de l'image en RGB vers des niveaux de gris.    
-    
+
 ![Etape 3](https://i.imgur.com/yCgyGlp.png)
-    
+
 4. Binarisation de l'image selon un seuil fixe pour toute l'image.    
-    
+
 ![Etape 4](https://i.imgur.com/ijbDXjF.png)
-    
+
 5. Récupération de la zone d'affichage du compteur.    
-     
+
 ![Etape 5](https://i.imgur.com/IxIJ8lz.png)
-    
+
 6. Traitement de cette zone d'affichage avec Pytesseract    
-    
+
 
 Problèmes rencontrés et leurs solutions
 ---------------------------------------
 
-Le premier objectif du projet était de pleinement utiliser les notions de produits de convolutions et de corrélations vus au cours en utilisant la librairie numpy.         
-Malheureusement nous avons rapidement rencontrés à la fois des bugs internes à la librairie mais aussi des difficultés lorsque les calculs matriciels devenaient plus complexes.        
+Le premier objectif du projet était de pleinement utiliser les notions de produits de convolutions et de corrélations vues au cours en utilisant la librairie numpy.         
+Malheureusement nous avons rapidement rencontré à la fois des bugs internes à la librairie, mais également des difficultés lorsque les calculs matriciels devenaient plus complexes.        
 La solution fut donc d'utiliser Pytesseract, une librairie de détection et de lecture automatique de caractère dans une image.      
-                                          
-Bien que très puissante, la librairie Pytesseract rencontre des difficultés pour lire les compteurs électrique car ceux ci contiennent trop d'information inutile.             
-Il a donc fallut augmenter la netteté de l'image et à la binariser pour supprimer les informations inutiles.
-                       
-Il a ensuite fallut trouver un moyen de sélectionner la zone d'affichage du compteur. Pour ce faire nous avons utiliser une méthode de détection de bord pour rechercher 
-la zone rectangulaire de l'image contenant l'affichage du compteur.
+
+Bien que très puissante, la librairie Pytesseract rencontre des difficultés pour lire les compteurs électriques car ceux-ci contiennent trop d'information inutile.             
+Il fallait donc augmenter la netteté de l'image et à la binariser pour supprimer les informations inutiles.
+
+Ensuite, nous avons dû trouver un moyen de sélectionner la zone d'affichage du compteur. Pour ce faire nous avons utilisé une méthode de détection de bord pour rechercher la zone rectangulaire de l'image contenant l'affichage du compteur.
 
 
-Limitation et améliorations possibles 
+Limitation et améliorations possibles
 -------------------------------------
 
 Actuellement, l'OCR ne fonctionne correctement qu'avec des images de bonne qualité et certains types de compteurs.    
 Une amélioration possible serait donc d'améliorer le traitement de l'image en implémentant des techniques de suppression/atténuation des reflets/parasites sur l'image.
-                
-Il serait également bien d'améliorer l'algorithme d'isolation de la zone d'affichage du compteur. En effet, se baser sur un "objet" de l'image qui a 4 sommets fonctionne
-qu'avec des images bien calibrées et ne contenant pas d'autres éléments pouvant être confondu avec cette zone d'affichage.
+
+Il serait également intéressant d'améliorer l'algorithme d'isolation de la zone d'affichage du compteur. En effet, se baser sur un "objet" de l'image qui a 4 sommets ne fonctionne qu'avec des images bien calibrées et ne contenant pas d'autres éléments pouvant être confondu avec cette zone d'affichage.
 
 Conclusions personnelles
 ------------------------
@@ -86,24 +84,25 @@ Il a été intéressant d'implémenter des fonctions de traitement d'image et d'
 ### Noé Lambin
 
 Ce projet a été pour moi l'occasion de découvrir et d'apprendre à maitriser Python.          
-Ce fut aussi l'occasion de tenter de mettre en pratique les techniques de produit de convolution et de corrélation vus lors du cours théorique.            
+Ce fut aussi l'occasion de tenter de mettre en pratique les techniques de produit de convolution et de corrélation vues lors du cours théorique.            
 J'ai aussi pu découvrir la partie mathématique qui se cache derrière le traitement d'image.          
 
 
 ### Mathieu Rousseau
 
 Au démarrage de ce projet, je ne connaissais pas du tout comment fonctionnait un OCR.     
-Ce projet m'a permis d'apprendre les différentes techniques de traitement d'image nécessaires à la bonne extraction des caractères de celle-ci (dans ce cas une valeur de consommation).    
+Ce projet m'a permis d'apprendre les différentes techniques de traitements de l'image nécessaires à la bonne extraction des caractères de celle-ci (dans ce cas une valeur de consommation).    
 J'ai également réappris le langage Python.    
 
 ### Christophe Van Waesberghe
 
-TODO
+Entre ce défi et le projet d'intégration, python aura été au coeur de mon apprentissage ! Découvrir le fonctionnement d'un OCR et l'application d'un cas pratique de traitement du signal a été très intéressant tant dans la réflexion, le travail d'équipe et la persévérance !
+
 
 Conclusion
 ----------
 
-Dans le domaine de la recherche scientifique, la programmation n'est plus une finalité comme dans une application ou un site web, elle ne devient plus qu'un outil mis au service du domaine de recherche. Cette approche différente de ce que nous avons l'habitude de faire peut être déroutante ; on peut être très bon en python sans pour autant avoir facile à réaliser ce projet.
+Dans le domaine de la recherche scientifique, la programmation n'est plus une finalité comme dans une application ou un site web, elle ne devient plus qu'un outil mis au service du domaine de recherche. Cette approche différente de ce que nous avons l'habitude de faire, peut être déroutante ; on peut être très bon en python sans pour autant avoir facile à réaliser ce projet.
 
 La solution n'est pas systématique, elle requiert un investissement en temps, en réflexion et en recherche.
 
