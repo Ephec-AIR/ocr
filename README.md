@@ -19,6 +19,7 @@ Problèmes rencontrés et leurs solutions
 
 Limitation et améliorations possibles 
 -------------------------------------
+Actuellement, l'OCR ne fonctionne correctement qu'avec des images de bonne qualité et certains types de compteurs.
 
 Conclusions personelles
 -----------------------
