@@ -50,10 +50,11 @@ Exemple
 
 Problèmes rencontrés et leurs solutions
 ---------------------------------------
-Le premier objectif du projet était de pleinement utiliser les notions de produits de convolutions et de corrélations vus au cours. Pour ce faire nous avons exploré la librerie numpy
-qui offre un éventail de fonctions mathématique notamment dans le calcul matriciel. Malheureusement nous avons rapidement rencontrés à la fois des bugs internes à la librarie mais aussi
-des difficultés avec les calculs matriciels, spécialement lors que ceux-ci devenaient extrèmement complexes. La solution fut donc d'utiliser Pytesseract, une librairie de détection
-et de lecture de caractère dans une image.    
+Le premier objectif du projet était de pleinement utiliser les notions de produits de convolutions et de corrélations vus au cours en utilisant la librairie numpy.         
+Malheureusement nous avons rapidement rencontrés à la fois des bugs internes à la librarie mais aussi des difficultés avec les calculs matriciels, spécialement lorsque
+ceux-ci devenaient plus complexes.        
+La solution fut donc d'utiliser Pytesseract, une librairie de détection et de lecture automatique de caractère dans une image.      
+                                          
 Bien que très puissante, la librairie Pytesseract rencontre énormément de difficulté pour lire les compteurs électrique car ceux ci contiennent trop d'information inutile. IL a donc
 fallut traiter l'image pour éliminer un maximum d'information inutile. Le premier traitement consistant à augmenter la netteté de l'image et à la binariser. Il a ensuite fallut trouver
 un moyen de sélectionner la zone d'affichage du compteur. Pour ce faire nous avons utiliser une méthode de détection de bord pour rechercher la zone rectangulaire de l'image contenant
