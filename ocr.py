@@ -6,7 +6,9 @@ from imutils.perspective import four_point_transform
 import cv2
 import numpy as np
 import pytesseract
-import pytesseract
+
+pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe"
+tessdata_dir_config = 'digits --tessdata-dir "C:\\Program Files (x86)\\Tesseract-OCR\\tessdata"'
 
 non_digit_re = re_compile("\D")
 
@@ -27,9 +29,9 @@ def get_consumption(image_path, threshold=150):
         thermo = thermosta_crop(cleaned_image)
     except NoThermostaFoundError:
         raise NoThermostaFoundError("No thermosta found for image %s" % image_path)
-
-    thermo_value = pytesseract.image_to_string(np.array(thermo))
-    return int(non_digit_re.sub("", thermo_value))
+    Image.fromarray(thermo).save("img.png")
+    thermo_value = pytesseract.image_to_string(Image.fromarray(thermo), config=tessdata_dir_config)
+    return thermo_value
 
 
 def thermosta_crop(image):
@@ -40,8 +42,8 @@ def thermosta_crop(image):
 
     # find contours in the edge map
     contours = cv2.findContours(edges.copy(), cv2.RETR_EXTERNAL,
-    	contours.CHAIN_APPROX_SIMPLE)
-    contours = contours[0] if is_cv2() else contours[1]
+    	cv2.CHAIN_APPROX_SIMPLE)
+    contours = contours[0 if is_cv2() else 1]
  
     # loop over the size of the contours in descending order
     for contour in sorted(contours, key=cv2.contourArea, reverse=True):
