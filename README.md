@@ -26,10 +26,14 @@ Conclusions personelles
 Julien Castiaux :
 
 Noé Lambin :    
-Ce projet a été pour moi l'occasion de découvrir et d'apprendre à maitriser Python. Ce fut aussi l'occasion de tenter de mettre en pratique les techniques de produit de convolution et de corrélation uvs lors du cours théorique.
+Ce projet a été pour moi l'occasion de découvrir et d'apprendre à maitriser Python.    
+Ce fut aussi l'occasion de tenter de mettre en pratique les techniques de produit de convolution et de corrélation vus lors du cours théorique.
 
 
-Mathieu Rousseau :
+Mathieu Rousseau :    
+Au démarrage de ce projet, je ne connaissais pas du tout comment fonctionnait un OCR.     
+Ce projet m'a permit d'apprendre les différentes techniques de traitement d'image nécessaires à la bonne extraction des caractères de celle-ci (dans ce cas une valeur de consommation).    
+J'ai également réappris le language Python.    
 
 Christophe Van Waesberghe :
 
