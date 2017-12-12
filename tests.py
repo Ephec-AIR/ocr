@@ -4,8 +4,6 @@ import unittest
 from json import load as jsonload
 from pathlib import Path
 from ocr import get_consumption
-from os import environ
-environ["TESSDATA_PREFIX"] = "C:\Program Files (x86)\Tesseract-OCR"
 
 class Test(unittest.TestCase):
    def test_meter_01(self):
