@@ -17,7 +17,8 @@ end
 accuracy = max(comp);
 vd=find(comp==max(comp));
 %*-*-*-*-*-*-*-*-*-*-*-*-*-
-if accuracy >= 0.5
+%if accuracy >= 0.5
+ if accuracy >= 0.3
     if vd==1
         number='1';
     elseif vd==2

@@ -4,7 +4,7 @@ warning('off','images:initSize:adjustingMag');
 warning('off','images:im2bw:binaryInput');
 warning('off','MATLAB:colon:nonIntegerIndex');
 
-img = imread('Images\compteur5.jpg');
+img = imread('Images\compteur4.jpg');
 figure;imshow(img);
 title("Image original");
 
