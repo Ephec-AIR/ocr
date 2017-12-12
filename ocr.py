@@ -1,3 +1,5 @@
+#!venv/bin/python
+
 from platform import system
 from re import compile as re_compile
 import cv2
@@ -7,18 +9,15 @@ from PIL import Image, ImageColor, ImageFilter
 from imutils import contours, is_cv2
 from imutils.perspective import four_point_transform
 
-if system() == "Windows":
-    # Patch for windows as tesseract doesnt add itself to the path
-    from functools import partial
-    pytesseract.image_to_string = partial(pytesseract.image_to_string, 
-        config='digits --tessdata-dir "C:\\Program Files (x86)\\Tesseract-OCR\\tessdata"')
-    pytesseract.pytesseract.tesseract_cmd = \
-        "C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe"
-
 non_digit_re = re_compile("\D")
+
 
 class NoThermostaFoundError(Exception):
     pass
+
+class NoValueFoundError(Exception):
+    pass
+
 
 def get_consumption(image_path, threshold=150):
     """
@@ -27,16 +26,22 @@ def get_consumption(image_path, threshold=150):
 
     image_path: ref to ocr.clean_image
     threshold: ref to ocr.binarize_array
+
+    >>> get_consumption("meters/15.jpg")
+    21278
     """
 
     cleaned_image = clean_image(image_path, threshold)
     try:
-        thermo = thermosta_crop(cleaned_image)
+        thermo = Image.fromarray(thermosta_crop(cleaned_image))
     except NoThermostaFoundError:
         raise NoThermostaFoundError("No thermosta found for image %s" % image_path)
-    Image.fromarray(thermo).save("img.png")
-    thermo_value = pytesseract.image_to_string(Image.fromarray(thermo))
-    return thermo_value
+
+    thermo_value = pytesseract.image_to_string(thermo)
+    if not thermo_value:
+        raise NoValueFoundError("Tesseract returned an empty string for thermosta %s" % thermo)
+
+    return non_digit_re.sub("", thermo_value)
 
 
 def thermosta_crop(image):
@@ -86,15 +91,6 @@ def binarize_array(numpy_array, threshold):
             numpy_array[i][j] = 0 if numpy_array[i][j] > threshold else 255
     return numpy_array
 
-
-def main():
-    """Quick test function"""
-    mat, mat2 = get_meter("numbers/electricity.jpg", 90)
-    img = Image.fromarray(mat)
-    img.show()
-    img2 = Image.fromarray(mat2)
-    img2.show()
-
-
 if __name__ == "__main__":
-    main()
+    import doctest
+    doctest.testmod()
