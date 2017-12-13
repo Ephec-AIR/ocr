@@ -19,4 +19,4 @@ def temp_capture():
     filepath = temppath / filename
     capture(filepath)
     yield filepath
-    remove(filepath)
+    remove(str(filepath))
