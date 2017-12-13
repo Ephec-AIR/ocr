@@ -7,13 +7,13 @@ from requests import get, post
 
 
 class WebAPI:
-    BASE_URL = environ.get("AIR_API_URL", "https://air.ephec-ti.org/api/v1")
+    BASE_URL = environ.get("AIR_API_URL", "https://air.ephec-ti.org/api/v1/")
     HEADERS = {"content-type": "application/json"}
-    
-    def __init__(self, serial, token):
+
+    def __init__(self, serial, secret):
         self.auth = {
             "serial": serial,
-            "token": token
+            "ocr_secret": secret
         }
 
     def _request(self, http_method, endpoint, headers={}, data={}, **kwargs):
@@ -24,4 +24,6 @@ class WebAPI:
                            **kwargs)
 
     def post_consumption(self, consumption):
-        self._request(post, "", data={"consumption": consumption})
+        res = self._request(post, "consumption", data={"value": consumption})
+        if res.status_code != 200:
+            raise Exception(res.text)
